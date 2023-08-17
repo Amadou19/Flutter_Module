@@ -72,8 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('Add text to message Bouton'),
               onPressed: () {
                 messageData = MessageData(
-                  title: "${messageData?.title} a",
-                  subtitle: "${messageData?.subtitle} B",
+                  title: "${messageData?.title} A",
+                  subtitle: "${messageData?.subtitle} C",
                 );
                 hostApi.finishDisplayMessage(messageData!);
               },
