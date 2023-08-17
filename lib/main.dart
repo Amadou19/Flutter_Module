@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 messageData = MessageData(
                   title: "${messageData?.title} a",
-                  subtitle: "${messageData?.subtitle} b",
+                  subtitle: "${messageData?.subtitle} B",
                 );
                 hostApi.finishDisplayMessage(messageData!);
               },
