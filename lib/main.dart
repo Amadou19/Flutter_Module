@@ -1,8 +1,23 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
+import 'firebase_options.dart';
 import 'hybrid_message_data_api.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(const MyApp());
+//void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  // Cause a crash
+  //throw StateError('This is a Dart exception.');
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,14 +28,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -71,6 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               child: const Text('Add text to message Bouton'),
               onPressed: () {
+                //throw StateError('This is a Dart exception.');
+                //FirebaseCrashlytics.instance.crash();
                 messageData = MessageData(
                   title: "${messageData?.title} A",
                   subtitle: "${messageData?.subtitle} C",
